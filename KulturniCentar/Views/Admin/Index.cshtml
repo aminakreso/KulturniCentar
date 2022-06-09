@@ -1,0 +1,36 @@
+﻿@using KulturniCentar.Data.Models
+
+@{
+    //ViewData["Title"] = "Index";
+    //var k = (List<KorisnickiRacun>)ViewData["podaciKljuc"];
+    ViewData["Title"] = "Index";
+    var a = (List<Admin>)ViewData["nekiKey"];
+}
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <td>Ime</td>
+            <td>Prezime</td>
+            <td>Korisnicki racun Id</td>
+            <td>Korisnicko ime</td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Admin x in a)
+        {
+            <tr>
+                <td>@x.Ime</td>
+                <td>@x.Prezime</td>
+                <td>@x.KorisnickiRacunId</td>
+                <td>@x.KorisnickiRacun.KorisnickoIme</td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+<button btn-danger> Dodaj</button>
+

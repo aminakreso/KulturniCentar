@@ -1,0 +1,33 @@
+﻿
+
+@using KulturniCentar.Data.Models;
+@using KulturniCentar.ViewModels;
+
+@model PrisustvoIndividualVM
+
+<h2>Prisustva</h2>
+
+@*<input asp-for="KursId" hidden />*@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Kurs</th>
+            
+            <th>Prisustvo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in @Model.rows)
+        {
+        <tr>
+            <td>@x.Kurs</td>
+            
+            <td>@x.Prisutan</td>
+         
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+

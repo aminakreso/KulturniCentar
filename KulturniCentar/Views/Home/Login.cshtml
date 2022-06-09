@@ -1,0 +1,31 @@
+﻿@model KulturniCentar.ViewModels.LoginVM
+@{ var poruka = TempData["Poruka"]; }
+
+@if (poruka != null)
+{
+    <label>@poruka</label>
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login" asp-controller="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="KorisnickoIme" class="control-label"></label>
+                <input asp-for="KorisnickoIme" class="form-control" />
+                <span asp-validation-for="KorisnickoIme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lozinka" class="control-label"></label>
+                <input asp-for="Lozinka" type="password" class="form-control" required />
+                <span asp-validation-for="Lozinka" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+            <br />
+            <a href="/Home/Register">Niste logirani</a>
+        </form>
+    </div>
+</div>
+

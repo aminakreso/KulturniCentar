@@ -1,0 +1,40 @@
+﻿
+@model KulturniCentar.ViewModels.CiklusSusretVM
+<h2>Susreti za ciklus </h2> @Model.Ciklus
+<input asp-for="CiklusId" hidden />
+<input asp-for="PredavacKorisnickiRacunId" hidden />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Datum </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in @Model.Rows)
+        {
+            <tr>
+                <td>@x.Naziv</td>
+                <td>@x.Datum</td>
+                <td>
+
+                    <a asp-action="Index" asp-controller="Materijali" asp-route-susretId="@x.SusretId" class="btn btn-info">Materijali</a>
+                    @if (Global.Role == "Predavac" && Global.KorisnickiRacunId == Model.PredavacKorisnickiRacunId)
+                    {
+                        <a asp-action="DodajPrisustvo" asp-route-SusretId="@x.SusretId" class="btn btn-danger">DodajPrisustvo</a>
+
+                    }
+
+                    @*<a asp-action="DodajMaterijale" asp-route-susretId="@x.SusretId" asp-route-ciklusId=@Model.CiklusId class="btn btn-info">DodajMaterijale</a>*@
+
+                    @*<a asp-action="Index" asp-controller="Materijali" asp-route-susretId="@x.SusretId" class="btn btn-info">DodajMaterijale</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Global.Role == "Admin")
+{
+<a asp-action="Dodaj" asp-route-ciklusId="@Model.CiklusId" class="btn btn-success">Dodaj</a>
+}

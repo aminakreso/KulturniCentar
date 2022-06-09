@@ -1,0 +1,30 @@
+﻿@using KulturniCentar.Data.Models
+
+@{
+    ViewData["Title"] = "Index";
+    var k = (List<KorisnickiRacun>)ViewData["podaciKljuc"];
+}
+<h1>Prikazi</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Korisnicko ime</td>
+            <td>Lozinka</td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (KorisnickiRacun x in k)
+        {
+        <tr>
+            <td>@x.Id</td>
+            <td>@x.KorisnickoIme</td>
+            <td>@x.Lozinka</td>
+
+        </tr>
+        }
+
+    </tbody>
+</table>
+

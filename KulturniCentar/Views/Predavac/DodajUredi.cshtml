@@ -1,0 +1,21 @@
+﻿@model KulturniCentar.ViewModels.PredavacDodajUrediVM
+
+<form asp-action="Snimi" asp-controller="Predavac">
+    <input asp-for="PredavacId" hidden />
+    <input asp-for="KorisnickiRacunId" hidden />
+    Ime:
+    <input asp-for="Ime" class="form-control" />
+    Prezime:
+    <input asp-for="Prezime" class="form-control" />
+    Email:
+    <input asp-for="Email" class="form-control" />
+    Telefon:
+    <input asp-for="Telefon" class="form-control" />
+    Korisnicko ime:
+    <input asp-for="KorisnickoIme" class="form-control" />
+    Lozinka:
+    <input asp-for="Lozinka" class="form-control" />
+
+    <input type="submit" value="Snimi" />
+
+</form>

@@ -1,0 +1,18 @@
+﻿@model KulturniCentar.ViewModels.OcijeniPolaznikVM
+
+Ocijeni polaznik --- @Model.Polaznik
+<form asp-action="SnimiOcjenu">
+
+    <input asp-for="@Model.Id" hidden />
+    <input asp-for="@Model.PolaznikId" hidden />
+    <br />
+    Ciklus polaznika
+    @Model.Ciklus
+    <br />
+    Broj bodova:
+    <input asp-for="@Model.Bodovi" class="form-control" />
+    Ocjena:
+    <input asp-for="@Model.Ocjena" class="form-control" />
+    <input type="submit" value="Snimi" />
+</form>
+

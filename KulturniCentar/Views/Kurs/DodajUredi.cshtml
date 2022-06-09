@@ -1,0 +1,35 @@
+﻿@using KulturniCentar.ViewModels
+@using KulturniCentar.Data
+@using KulturniCentar.Helper
+
+@model KursDodajUrediVM
+@{ 
+    ViewData["Title"] = "Dodaj";
+}
+
+@if (Model.KursId != 0) { 
+    <h2>Uredi kurs</h2>
+}
+else { 
+    <h2>Dodaj Kurs</h2>
+}
+
+<form asp-action="Snimi" asp-controller="Kurs">
+    <input type="hidden" value="@Model.KursId" name="kursId" />
+    <div>
+        Naziv:
+        <input type="text" value="@Model.Naziv" name="naziv" required/>
+    </div>
+    <div>
+        Maksimalan broj polaznika:
+        <input type="number" value="@Model.MaxBrojPolaznika" name="maxBrojPolaznika" required />
+    </div>
+    Predavac:
+    @MyMvc.dropdown("PredavacId", Model.Predavaci, Model.PredavacId, "")
+    <br />
+    Kategorija:
+    @MyMvc.dropdown("KategorijaId", Model.Kategorije, Model.KategorijaId, "")
+    <br />
+  
+    <input id="submitButton" type="submit" value="Snimi" />
+</form>

@@ -1,0 +1,17 @@
+﻿@model KulturniCentar.ViewModels.ZahtjevDodajUrediVM
+
+<form asp-action="SnimiZahtjev">
+    <input asp-for="ZahtjevId" hidden />
+
+    <input asp-for="PolaznikId" class="form-control" hidden />
+    <input asp-for="Naslov" class="form-control" hidden />
+    <input asp-for="Datum" class="form-control" hidden />
+
+    Kurs:
+    <select asp-for="KursId" asp-items="@Model.Kurs" class="form-control"></select>
+    Napomena:
+    <input asp-for="Napomena" class="form-control" />
+
+    <input type="submit" value="Snimi" />
+
+</form>

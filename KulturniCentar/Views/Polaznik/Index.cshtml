@@ -1,0 +1,41 @@
+﻿
+@using KulturniCentar.Data.Models;
+@using KulturniCentar.ViewModels;
+
+@model List<Polaznik>
+<div asp-authorize asp-roles="Admin">
+    <h2>Polaznici</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Slika</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in @Model)
+            {
+                <tr>
+                    <td>@x.Ime</td>
+                    <td>@x.Prezime</td>
+                    <td>@x.Email</td>
+                    <td>@x.Telefon</td>
+                    <td>
+                        <img src="~/Images/@x.Slika" class="rounded-circle" width="40" height="40" asp-append-version="true" />
+                    </td>
+                    <td>
+                        <a asp-action="Obrisi" asp-route-polaznikId=@x.Id class="btn btn-danger">Obrisi</a>
+                        <a asp-action="Uredi" asp-route-polaznikId=@x.Id class="btn btn-info">Uredi</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="Dodaj" class="btn btn-success">Dodaj</a>
+
+</div>

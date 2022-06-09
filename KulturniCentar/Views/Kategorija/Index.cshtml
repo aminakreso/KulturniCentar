@@ -1,0 +1,39 @@
+﻿@using KulturniCentar.ViewModels
+@using KulturniCentar.Data.Models
+
+@model KategorijaIndexVM
+@{
+   ViewData["Title"] = "Kategorija";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th> Naziv kategorije </th>
+            <th> Opis </th>
+            <th> Broj kurseva </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.rows)
+        {
+        <tr>
+            <td> @x.Naziv</td>
+            <td> @x.Opis</td>
+            <td> @x.BrojKurseva</td>
+            <td>
+                @if (Global.Role == "Admin")
+                {
+                    <a asp-action="Uredi" asp-route-id="@x.Id" class="btn btn-danger">Uredi</a>
+                    <a asp-action="Obrisi" asp-route-id="@x.Id" class="btn btn-danger">Obrisi</a>
+                }
+                    <a asp-action="Detalji" asp-route-id="@x.Id" class="btn btn-info">Detalji</a>
+                </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@if (Global.Role == "Admin")
+{
+    <a asp-action="Dodaj" class="btn btn-success">Dodaj</a>
+}

@@ -1,0 +1,23 @@
+﻿@model KulturniCentar.ViewModels.PolaznikIndividualIndexVM
+
+@if (Model.Route != null) {
+<img src="~/Images/@Model.Route" class="rounded-circle" width="40" height="40" asp-append-version="true" />
+<br />
+}
+
+<form asp-action="SnimiSlika" enctype="multipart/form-data">
+    <input asp-for="Id" hidden />
+    Ime: @Model.Ime
+    <br />
+    Prezime: @Model.Prezime
+    <br />
+    Email: @Model.Email
+    <br />
+    Telefon: @Model.Telefon
+    <br />
+
+    Slika
+    <input asp-for="Slika" class="form-control" />
+    <input type="submit" value="Snimi" />
+</form>
+

@@ -1,0 +1,34 @@
+﻿@using KulturniCentar.Data.Models;
+@using KulturniCentar.ViewModels;
+
+@model NotifikacijaIndexVM
+
+<h2>Notifikacije</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Naslov</th>
+            <th>Datum</th>
+            <th>Kreirao</th>
+            <th>Sadrzaj</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in @Model.Rows)
+        {
+            <tr>
+                <td>@x.Naslov</td>
+                <td>@x.Datum</td>
+                <td>@x.KorisnickoIme</td>
+                <td>@x.Sadrzaj</td>
+                <td>
+                    <a asp-action="Obrisi" asp-route-notifikacijaId=@x.Id class="btn btn-danger">Obrisi</a>
+                    <a asp-action="Uredi" asp-route-notifikacijaId=@x.Id class="btn btn-info">Uredi</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Dodaj" class="btn btn-success">Dodaj</a>
+

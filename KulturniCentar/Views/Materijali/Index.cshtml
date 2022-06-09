@@ -1,0 +1,48 @@
+﻿@model KulturniCentar.ViewModels.MaterijaliIndexVM
+<h2>Materijali za susret - @Model.Susret</h2>
+<input asp-for="SusretId" hidden />
+@if (Global.Role == "Predavac")
+{
+    <form method="post" enctype="multipart/form-data" asp-controller="Materijali" asp-action="FileUpload" asp-route-susretId="@Model.SusretId">
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>Odaberite materijale:</p>
+                <input type="file" name="files" multiple />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Upload" />
+            </div>
+        </div>
+    </form>
+    <br />
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Tip</th>
+            <th>Kreirano</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in @Model.Rows)
+        {
+            <tr>
+                <td>@x.Naziv</td>
+                <td>@x.Tip</td>
+                <td>@x.Kreirano</td>
+               
+                <td>
+                    @if (Global.Role == "Predavac")
+                    {
+                        <a asp-action="Obrisi" asp-route-materijaliId=@x.Id class="btn btn-danger">Obrisi</a>
+                    }
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+

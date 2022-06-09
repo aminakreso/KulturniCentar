@@ -1,0 +1,34 @@
+﻿@using KulturniCentar.ViewModels
+@using KulturniCentar.Data.Models
+
+@model KategorijaDetaljiVM
+
+@{
+    ViewData["Title"] = "Detalji";
+}
+
+<div>
+    <div class="form-group">
+        <label> Naziv kategorije : @Model.Naziv </label>
+        @*<input type="text" class="form-group" readonly value="@Model.Naziv" />*@
+    </div>
+    <div class="form-group">
+        <label>Opis kategorije : @Model.Opis</label>
+    </div>
+    <div class="form-group">
+        <label> Broj kurseva u kategoriji : </label>
+        <input asp-for="@Model.BrojKurseva" readonly />
+    </div>
+</div>
+
+<div id="nekiID" style="border: 1px black solid"></div>
+
+<script>
+    $(document).ready(function(parameters) {
+        $.get("/stavkeajax/index?kategorijaId=@Model.Id",
+            function(rezultat, status) {
+                $("#nekiID").html(rezultat);
+
+            });
+    });
+</script>

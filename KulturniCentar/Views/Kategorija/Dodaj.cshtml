@@ -1,0 +1,27 @@
+﻿@using KulturniCentar.ViewModels
+@using KulturniCentar.Data.Models
+
+@model Kategorija
+
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+<h2>Dodaj kategoriju</h2>
+
+<form asp-action="Snimi" asp-controller="Kategorija">
+    <div>
+        <label>Naziv kategorije:</label>
+        <div>
+            <input asp-for="@Model.Naziv" class="form-control" required /> 
+        </div>
+    </div>
+    <div>
+        <label> Opis kategorije:</label>
+        <div>
+            <input asp-for="@Model.Opis" class="form-control" required />
+        </div>
+    </div>
+
+    <input type="submit" value="Snimi" />
+</form>

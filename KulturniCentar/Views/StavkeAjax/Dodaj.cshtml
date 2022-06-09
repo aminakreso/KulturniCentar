@@ -1,0 +1,29 @@
+﻿@using KulturniCentar.Data.Models
+@using KulturniCentar.Helper
+@using KulturniCentar.ViewModels
+
+@model StavkeDodajVM
+@{ ViewData["Title"] = "Dodaj"; }
+
+<h2>Dodaj novi kurs</h2>
+
+<form action="/StavkeAjax/Snimi" ajax-rezultat="nekiID" ajax-poziv="da">
+    <input type="hidden" value="@Model.KategorijaId" name="kategorijaId" />
+    <input type="hidden" value="@Model.KursId" name="kursId" />
+
+    <div>
+        Naziv kursa:
+        <input type="text" value="@Model.Naziv" name="Naziv" />
+    </div>
+    <div>
+        Maksimalan broj polaznika:
+        <input type="text" value="@Model.MaxBroj" name="MaxBroj" />
+    </div>
+    Predavač:
+    @MyMvc.dropdown("PredavacId", Model.Predavaci, Model.PredavacId, "")
+    <br />
+    <input id="submitButton" type="submit" value="Snimi" />
+</form>
+
+<script>
+</script>

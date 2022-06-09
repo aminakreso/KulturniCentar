@@ -1,0 +1,44 @@
+﻿@using KulturniCentar.ViewModels
+@using KulturniCentar.Data.Models
+
+@model KursIndexVM
+@*@{
+        ViewData["Title"] = "ImeViewa";
+    }*@
+
+<h2>Prikaz kurseva</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Naziv kursa</th>
+            <th>Max broj polaznika</th>
+            <th>Kategorija</th>
+            <th>Predavac</th>
+            <th>Ciklusi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.rows)
+        {
+            <tr>
+                <td>@x.Naziv</td>
+                <td>@x.MaxBrojPolaznika</td>
+                <td>@x.Kategorija</td>
+                <td>@x.Predavac</td>
+                <td>
+                    <a asp-action="IndexKurs" asp-controller="Ciklus" asp-route-kursId="@x.KursId" class="btn btn-danger">Ciklusi</a>
+                    @if (Global.Role == "Admin")
+                    {
+                        <a asp-action="Obrisi" asp-route-kursId="@x.KursId" class="btn btn-danger">Obrisi</a>
+                        <a asp-action="Uredi" asp-route-kursId="@x.KursId" class="btn btn-primary">Uredi</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Global.Role == "Admin")
+{
+    <a asp-action="Dodaj" class="btn btn-success">Dodaj</a>
+}

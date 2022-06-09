@@ -1,0 +1,40 @@
+﻿@using KulturniCentar.Data.Models;
+@using KulturniCentar.ViewModels;
+
+@model PredavacIndexVM
+
+<h2>Predavaci</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>korisnickoIme</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in @Model.rows)
+        {
+        <tr>
+            <td>@x.Ime</td>
+            <td>@x.Prezime</td>
+            <td>@x.Email</td>
+            <td>@x.Telefon</td>
+            <td>@x.korisnickoIme</td>
+            <td>
+                @if (Global.Role == "Admin")
+                {
+                    <a asp-action="Obrisi" asp-route-predavacId=@x.Id class="btn btn-danger">Obrisi</a>
+                    <a asp-action="Uredi" asp-route-predavacId=@x.Id class="btn btn-info">Uredi</a>
+                }
+                </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Dodaj" class="btn btn-success">Dodaj</a>
+

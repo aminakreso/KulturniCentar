@@ -1,0 +1,44 @@
+﻿@using KulturniCentar.Data.Models;
+@using KulturniCentar.ViewModels;
+
+@model PrisustvoSusretVM
+
+<h2> Prisustva za ,kurs @Model.Ciklus  - susret @Model.Susret </h2>
+<br />
+<form asp-action="SnimiPrisustvo">
+
+    <input asp-for="SusretId" hidden />
+    <input asp-for="CiklusId" hidden />
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Polaznik</th>
+                <th>Prisutan</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in @Model.Rows)
+            {
+                <tr>
+                    <td>@x.Polaznik</td>
+                    <td>
+                        @if (x.Prisutan == true)
+                        {
+                            <a id="f" class="" style="color:red" asp-action="NijePrisutan" asp-route-polaznikId="@x.PolaznikId" asp-route-susretId="@Model.SusretId" asp-route-_ciklusId="@Model.CiklusId">NE</a>
+                        }
+
+                        else
+                        {
+                            <a id="t" style="color: green" asp-action="JePrisutan" asp-route-polaznikId="@x.PolaznikId" asp-route-susretId="@Model.SusretId" asp-route-_ciklusId="@Model.CiklusId">DA</a>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</form>
+
+

@@ -1,0 +1,64 @@
+﻿@model KulturniCentar.ViewModels.CiklusDetaljiVM
+
+<h2> Kurs: @Model.Kurs   --- Ciklus: @Model.Ciklus  </h2>
+Datum pocetka:
+<input type="submit" value="@Model.DatumPocetka" readonly />
+Datum zavrsetka:
+<input type="submit" value="@Model.DatumZavrsetka" readonly />
+<br />
+<input asp-for="CiklusId" hidden />
+<input asp-for="PredavacKorisnickiRacunId" hidden />
+
+Neocijenjen polaznici
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Polaznik</th>
+            <th>Ocjeni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in @Model.Neocijenjeni)
+        {
+        <tr>
+            <td>@x.Polaznik</td>
+            @if (Global.Role == "Predavac" && Global.KorisnickiRacunId == Model.PredavacKorisnickiRacunId)
+            {
+                <td>
+
+                    <a asp-action="Ocijeni" asp-route-polaznikCiklusId=@x.Id class="btn btn-danger">Ocijeni</a>
+                </td>
+
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+<br />
+Ocijenjen polaznici
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Polaznik</th>
+            <th>Ocjena</th>
+            <th>Uredi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in @Model.Ocijenjeni)
+        {
+        <tr>
+            <td>@x.Polaznik</td>
+            <td>@x.Ocjena</td>
+            @if (Global.Role == "Predavac" && Global.KorisnickiRacunId == Model.PredavacKorisnickiRacunId)
+            {
+                <td>
+
+                    <a asp-action="UrediOcjenu" asp-route-polaznikCiklusId=@x.Id class="btn btn-danger">Uredi Ocjenu</a>
+                    <a asp-action="ObrisiOcjenu" asp-route-polaznikCiklusId=@x.Id class="btn btn-danger">Obrisi Ocjenu</a>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>

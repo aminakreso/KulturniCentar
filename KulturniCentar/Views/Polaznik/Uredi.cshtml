@@ -1,0 +1,19 @@
+﻿@model KulturniCentar.ViewModels.PolaznikDodajUrediVM
+
+<form asp-action="Snimi" asp-controller="Polaznik" enctype="multipart/form-data">
+    <input asp-for="PolaznikId" hidden />
+    <img src="~/Images/@Model.Route" class="rounded-circle" width="40" height="40" asp-append-version="true" />
+    Ime:
+    <input asp-for="Ime" class="form-control" />
+    Prezime:
+    <input asp-for="Prezime" class="form-control" />
+    Email:
+    <input asp-for="Email" class="form-control" />
+    Telefon:
+    <input asp-for="Telefon" class="form-control" />
+    Korisnicki racun:
+    <select asp-for="KorisnickiRacunId" asp-items="@Model.KorisnickiRacun" class="form-control"></select>
+
+    <input type="submit" value="Snimi" />
+
+</form>

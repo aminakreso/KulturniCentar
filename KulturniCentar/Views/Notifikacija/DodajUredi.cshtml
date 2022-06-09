@@ -1,0 +1,20 @@
+﻿@model KulturniCentar.ViewModels.NotifikacijaDodajUrediVM
+
+<form asp-action="Snimi" asp-controller="Notifikacija">
+    <input asp-for="Id" hidden />
+    <input asp-for="KorisnickiRacunId" hidden />
+
+    Naslov:
+    <input asp-for="Naslov" class="form-control" />
+    Datum:
+    <input type="date" asp-for="Datum" class="form-control" />
+    Objavio:
+    <input asp-for="KorisnickoIme" class="form-control" readonly />
+    Sadrzaj:
+    <input asp-for="Sadrzaj" class="form-control" />
+    Kurs:
+    <select asp-for="KursId" asp-items="@Model.Kurs" class="form-control"></select>
+
+    <input type="submit" value="Snimi" />
+
+</form>

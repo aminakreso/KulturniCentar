@@ -1,0 +1,29 @@
+﻿
+@using KulturniCentar.Data.Models;
+@using KulturniCentar.ViewModels;
+
+@model PrikaziPolaznikVM
+
+<h2> Polaznici kursa: </h2>
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Polaznik</th>
+            <th>Ukloni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in @Model.Rows)
+        {
+            <tr>
+                <td>@x.Polaznik</td>
+                <td>
+                    <a asp-action="UkloniPolaznik" asp-route-polaznikid=@x.PolaznikId asp-route-ciklusId=@x.PolaznikId class="btn btn-danger">Ukloni</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

@@ -1,0 +1,76 @@
+﻿@using KulturniCentar.Data.Models;
+@using KulturniCentar.ViewModels;
+
+@model CiklusIndexVM
+
+<h2> Aktivni kursevi:</h2>
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Kurs</th>
+            <th>Predavac</th>
+            <th>Naziv</th>
+            <th>JeZavrsen</th>
+            <th>Datum pocetka</th>
+            <th>Datum zavrsetka</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in @Model.Aktivni)
+        {
+        <tr>
+            <td>@x.Kurs</td>
+            <td>@x.Predavac</td>
+            <td>@x.Naziv</td>
+            <td>@x.JeZavrsen</td>
+            <td>@x.DatumPocetka</td>
+            <td>@x.DatumZavrsetka</td>
+            <td>
+                <a asp-action="IndexCiklus" asp-controller="Susret" asp-route-ciklusId=@x.CiklusId class="btn btn-danger">Susreti</a>
+                @if (Global.Role == "Predavac" && Global.KorisnickiRacunId==x.PredavacKorisnickiRacunId)
+                {
+                <a asp-action="PrikaziPolaznik" asp-route-ciklusId=@x.CiklusId class="btn btn-danger">Polaznici</a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<h2> Neaktivni kursevi:</h2>
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Kurs</th>
+            <th>Predavac</th>
+            <th>Naziv</th>
+            <th>JeZavrsen</th>
+            <th>Datum pocetka</th>
+            <th>Datum zavrsetka</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in @Model.Neaktivni)
+        {
+        <tr>
+            <td>@x.Kurs</td>
+            <td>@x.Predavac</td>
+            <td>@x.Naziv</td>
+            <td>@x.JeZavrsen</td>
+            <td>@x.DatumPocetka</td>
+            <td>@x.DatumZavrsetka</td>
+            <td>
+                @if (Global.Role == "Predavac" || Global.Role == "Admin")
+                {
+                    <a asp-action="Detalji" asp-route-ciklusId=@x.CiklusId class="btn btn-danger">Detalji</a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<br />
+

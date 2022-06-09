@@ -1,0 +1,46 @@
+﻿@using KulturniCentar.ViewModels
+@using KulturniCentar.Data.Models
+
+@model StavkeIndexVM
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Maksimalan broj polaznika</th>
+            <th>Predavac</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.rows)
+        {
+            <tr>
+                <td>@x.Naziv</td>
+                <td>@x.MaxBrojPolaznika</td>
+                <td>@x.Predavac</td>
+                @if (Global.Role == "Admin")
+                {
+                    <td>
+                        <a class="btn btn-danger" ajax-poziv="da" ajax-rezultat="nekiID" asp-action="Obrisi" asp-route-kursId="@x.KursId">Obrisi</a>
+                        <a class="btn btn-warning" ajax-poziv="da" ajax-rezultat="nekiID" asp-action="Uredi" asp-route-kursId="@x.KursId">Uredi</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Global.Role == "Admin")
+{
+    <a class="btn btn-danger" ajax-poziv="da" ajax-rezultat="nekiID" asp-action="Dodaj" asp-route-kategorijaId="@Model.KategorijaID">Dodaj</a>
+}
+    @*<button id="idButtona" class="btn btn-danger"> Dodaj</button>*@
+    @*<script>
+            $("#idButtona").click(function (event) {
+
+                $.get("/stavkeajax/dodaj?kategorijaId=@Model.KategorijaID",
+                    function (rezultat, status) {
+                    $("#nekiID").html(rezultat);
+                });
+            });
+        </script>*@

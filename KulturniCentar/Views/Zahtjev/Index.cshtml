@@ -1,0 +1,109 @@
+﻿
+@using KulturniCentar.Data.Models;
+@using KulturniCentar.ViewModels;
+
+@model ZahtjevIndexVM
+
+<h2>Aktivni zahtjevi</h2>
+<form id="frm">
+    <div id="ajaxDiv">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Kurs</th>
+                    <th>Polaznik</th>
+                    <th>Napomena</th>
+                    <th>Datum</th>
+                    <th>Prihvacen</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in @Model.Aktivni)
+                {
+                    <tr>
+                        <td>@x.Kurs</td>
+                        <td>@x.Polaznik</td>
+                        <td>@x.Napomena</td>
+                        <td>@x.Datum</td>
+                        <td>
+                            <a class="btn-info" asp-action="Dodaj" asp-route-zahtjevId="@x.ZahtjevId"> Dodaj </a>
+                        </td>
+                        <td>
+                            <a asp-action="Obrisi" asp-controller="Zahtjev" asp-route-zahtjevId=@x.ZahtjevId class="btn btn-danger">Obrisi</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <br />
+    <h2>Neaktivni zahtjevi</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Kurs</th>
+                <th>Polaznik</th>
+                <th>Napomena</th>
+                <th>Datum</th>
+                <th>Prihvacen</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in @Model.Neaktivni)
+            {
+                <tr>
+                    <td>@x.Kurs</td>
+                    <td>@x.Polaznik</td>
+                    <td>@x.Napomena</td>
+                    <td>@x.Datum</td>
+                    <td>
+                        @*@if (x.IsPrihvacen == true)
+                            {
+                                <input type="checkbox" id="DodajPolaznikaNaKurs" name="Zavrsen" value="@x.IsPrihvacen" checked="@x.IsPrihvacen" />
+                            }
+
+                            else
+                            {
+                            }*@
+                        <input type="checkbox" id="DodajPolaznikaNaKurs" onchange="MyFunction()" value="@x.IsPrihvacen" checked="@x.IsPrihvacen" />
+                    </td>
+
+
+                    <td>
+                        <a asp-action="Obrisi" asp-route-zahtjevId=@x.ZahtjevId class="btn btn-danger">Obrisi</a>
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+
+
+
+
+<script>
+    function DodajZahtjev(kursId) {
+        var form = $("#frm").val();
+        var url = "/Zahtjev/DodajZahtjev?kursId=";
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: kursId,
+            success: function (data) {
+                $("ajaxDiv").html(data);
+            }
+        });
+    }
+
+
+
+
+</script>
+
